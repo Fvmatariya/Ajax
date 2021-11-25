@@ -1,0 +1,26 @@
+<script>
+    $('#submit').click(function(){
+        let name = $('#name').val()
+        var email = $('#email').val()
+        var mobile = $('#mobile').val()
+
+        d = {
+            name : name,
+            email:email,
+            mobile : mobile,
+            csrfmiddlewaretoken : $('input[name=csrfmiddlewaretoken]').val()
+        }
+
+        $.ajax({
+            url : '{% url "add-data" %}',
+            method : 'POST',
+            data : d,
+
+           success :  function(response){
+               console.log(response)
+            //    alert(response.password)
+                $('form')[0].reset()
+           }
+        })
+    })
+</script>
